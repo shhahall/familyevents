@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
+    <title>Home</title><link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        body{
+            background-image: url('../static/images/topImage.jpg');
+        }
+    </style>
+</head>
+<body>
+    <section class="nav-bar">
+        <div class="logo">
+            <h5>FAMILY EVENTS</h5>
+        </div>
+        <div class="hm-menu">
+            <input type="checkbox" name="" id="hm-menu">
+            <label for="hm-menu" class="menu-icon" id="menu-icon">
+                <div class="line"></div>
+                <div class="line middle-line"></div>
+                <div class="line"></div>
+            </label>
+        </div>
+    
+        </section>
+        <section class="nav-bar-small" id="nav-bar-small">
+           <div class="navs">
+           <a href="{% url 'homepage' %}">Home</a>
+           <a href="">Services</a>
+           <span class="credits">copyright family events</span>
+    
+           </div>
+           
+        </section>
+        <div class="outer-box">
+            <form action="" method="post" class="login" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="firstName" placeholder="First Name">
+                <input type="text" name="lastName" placeholder="Last Name">
+                <input type="date" name="dob" placeholder="Date of Birth">
+                <input type="file" name="dp" placeholder="Profile Picture">
+                <input type="text" name="username" placeholder="Username">
+                <input type="email" name="email" placeholder="Email">
+                <input type="number" name="whatsapp_number" placeholder="Whatsapp Number">
+                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password2" placeholder="Retype Password">
+                <button type="submit">Register</button>
+                <span>Have an account? <a href="{% url 'loginpage' %}" class="highlight">Login Now</a></span>
+            </form>
+            
+        </div>
+</body>

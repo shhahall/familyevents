@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j*rpf%zn2*p(5rsqb6mngcx84sb$iihl^i61h=u+6dq(8*02&h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.5','127.0.0.1','192.168.154.32','172.20.10.2']
 
 
 # Application definition
@@ -131,5 +131,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
+# settings.py
+
+# Media file settings
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'loginpage'

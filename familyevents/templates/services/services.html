@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
+    <title>Home</title><link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        body{
+            background-image: url('../static/images/topImage.jpg');
+        }
+    </style>
+</head>
+<body>
+    <section class="nav-bar">
+    <div class="logo">
+        <h5>FAMILY EVENTS</h5>
+    </div>
+    <div class="hm-menu">
+        <input type="checkbox" name="" id="hm-menu">
+        <label for="hm-menu" class="menu-icon" id="menu-icon">
+            <div class="line"></div>
+            <div class="line middle-line"></div>
+            <div class="line"></div>
+        </label>
+    </div>
+
+    </section>
+    <section class="nav-bar-small" id="nav-bar-small">
+       <div class="navs">
+       <a href="{% url 'homepage' %}">Home</a>
+       <a href="{% url 'loginpage' %}">Login/Register</a>
+       <a href="">Services</a>
+       <a href="{% url 'createservice' %}">Create Service</a>
+       <span class="credits">copyright family events</span>
+
+       </div>
+       
+    </section>
+    <section class="services-body">
+        {% for x in service %}
+        <div class="services-box">
+            <img src="{{ x.image.url }}" alt="" srcset="">
+            <h4>{{ x.name }}</h4>
+            <span>{{ x.description }}</span>
+            <a href="">Book Now</a>
+            <div class="admin-buttons">
+                <a class="edit">edit</a>
+                <a href="{% url 'deleteservice' x.id %}">delete</a>
+            </div>
+            </div>
+            {% endfor %}
+</section>
+</body>
+</html>
