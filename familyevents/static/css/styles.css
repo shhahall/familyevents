@@ -379,9 +379,6 @@ color: rgb(238, 163, 71);
     border-radius: 2vh;
 }
 
-
-
-
 @media (max-width:425px){
     .hm-menu{
         display: block;

@@ -22,27 +22,16 @@ def register_page(request):
         dob = request.POST.get('dob')
         whatsapp_number = request.POST.get('whatsapp_number')
         dp = request.FILES.get('dp')
-
         if username and email and password:
             try:
-                # Create a new user object
                 user = User.objects.create_user(username=username, email=email, password=password, first_name=firstName, last_name=lastName)
-                # Create a UserProfile object
                 userProfile = UserProfile.objects.create(user=user, dob=dob, whatsapp_number=whatsapp_number, dp_image=dp)
-                # Optionally, you can directly call login() to log in the user after registration
-                # login(request, user)
-                # Redirect the user to a different page (e.g., login page) after registration
-                # return redirect('login')
-                return redirect('index_page')  # Redirect to the index page after successful registration
+                return redirect('index_page')  
             except Exception as e:
-                # Handle any exceptions (e.g., username or email already exists)
                 print(f"Registration failed: {e}")
-                # You can render a registration form again with an error message if needed
                 return render(request, 'auth/register.html', {'error': 'Registration failed. Please try again.'})
         else:
-            # Handle invalid form data (e.g., missing required fields)
             return render(request, 'auth/register.html', {'error': 'Invalid form data. Please provide all required fields.'})
-
     return render(request, 'auth/register.html')
 
 

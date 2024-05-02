@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
-    <title>Home</title><link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/script.js' %}"></script>
     <style>
         body{
@@ -46,7 +46,7 @@
             <span>{{ x.description }}</span>
             <a href="">Book Now</a>
             <div class="admin-buttons">
-                <a class="edit">edit</a>
+                <a href="{% url 'editservice' x.id %}">edit</a>
                 <a href="{% url 'deleteservice' x.id %}">delete</a>
             </div>
             </div>
