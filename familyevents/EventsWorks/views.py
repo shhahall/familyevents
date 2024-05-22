@@ -52,7 +52,8 @@ def book_work(request,pk):
 
 def list_bookings(request):
     works = BookedWorks.objects.exclude(status=1)
-    return render(request,'works/pending_works_requests.html',{"works":works})
+    is_authenticated = request.user.is_authenticated
+    return render(request,'works/pending_works_requests.html',{"works":works,"is_authenticated":is_authenticated})
 
 def reject_booking(request,pk):
     booking=BookedWorks.objects.get(pk=pk)
@@ -67,6 +68,6 @@ def accept_booking(request,pk):
 
 def registered_employees(request,pk):
     work = Works.objects.get(pk=pk)
-    employees = BookedWorks.objects.filter(work=work)
+    employees = BookedWorks.objects.filter(work=work,status=1)
     
     return render(request,'works/employees_registered.html',{'employees':employees})

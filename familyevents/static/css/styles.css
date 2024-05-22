@@ -39,7 +39,6 @@ body,html{
     backdrop-filter: blur(20px);
     padding: 1vh;
     border-bottom-left-radius: 2vh;
-   
 }
 .navs a {
     text-decoration: none;

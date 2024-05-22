@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
 from . forms import Service_Create_Form
-from . models import Services
+from . models import Services,Bookings
 import os
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.conf import settings
+
 # Create your views here.
 def create_service(request):
     if request.method == 'POST':
@@ -40,7 +43,17 @@ def delete_services(request,pk):
 
 def view_service(request,pk):
     service=Services.objects.get(pk=pk)
-    return render(request,{'service':service})
+    if request.method == 'POST':
+        date=request.POST.get('date')
+        return redirect('createbooking',service_id=service.pk,date=date)
+    return render(request,"services/view_service.html",{'service':service})
 
 
-        
+def create_booking(request, service_id, date):
+    user = request.user
+    service = Services.objects.get(pk=service_id)
+    try:
+        booking = Bookings.objects.create(service_name=service, user=user, date=date)
+        return redirect('homepage')
+    except Exception as e:
+        return redirect('alert',data='Not Available for this Date')

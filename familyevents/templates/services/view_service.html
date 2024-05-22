@@ -37,12 +37,13 @@
            
         </section>
         <div class="outer-box">
-            <form action="" method="post" class="login">
+            <form action="" method="post" class="login" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button>Login</button>
-                <span>Don't have an account?<a href="{% url 'registerpage' %}" class="highlight">Register Now</span>
+                <span>{{ service.name }}</span>
+                <input type="date" name="date" required>
+                <button type="submit">Proceed</button>
+                
             </form>
+            
         </div>
 </body>

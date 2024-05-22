@@ -35,8 +35,10 @@
        {% else %}
        <a href="{% url 'loginpage' %}">Login/Register</a>
        {% endif %}
-       <a href="">Services</a>
-       <a href="{% url 'createservice' %}">Create Service</a>
+       {% if user.user_profile.role >= 3 %}
+       <a href="{% url 'creatework' %}">Create Work</a>
+       <a href="{% url 'bookingrequests' %}">Work Requests</a>  
+       {% endif %}
        <span class="credits">copyright family events</span>
 
        </div>

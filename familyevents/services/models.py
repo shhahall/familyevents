@@ -10,5 +10,5 @@ class Services(models.Model):
 
 class Bookings(models.Model):
     service_name=models.ForeignKey(Services,on_delete=models.SET_NULL,related_name='service_name',null=True)
-    date=models.DateField()
+    date=models.DateField(unique=True)
     user=models.ForeignKey(User,on_delete=models.SET_NULL,related_name='booked_user',null=True)

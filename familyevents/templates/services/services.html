@@ -48,11 +48,13 @@
             <img src="{{ x.image.url }}" alt="" srcset="">
             <h4>{{ x.name }}</h4>
             <span>{{ x.description }}</span>
-            <a href="">Book Now</a>
+            <a href="{% url 'viewservice' x.id %}">Book Now</a>
+            {% if user.user_profile.role >= 3 %}
             <div class="admin-buttons">
                 <a href="{% url 'editservice' x.id %}">edit</a>
                 <a href="{% url 'deleteservice' x.id %}">delete</a>
             </div>
+            {% endif %}
             </div>
             {% endfor %}
 </section>

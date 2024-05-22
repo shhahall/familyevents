@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{data}}</title>
+    <style>
+        body{
+            display: flex;
+            max-height: 100%;
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .data{
+            font-size: 10vh;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        .container .go-back{
+            text-decoration: none;
+            background-color: brown;
+            color: white;
+            border-radius: 5vh;
+            padding: 1vh;
+            border:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <span class="data">{{data}}</span>
+    <button class="go-back" id="redirectButton">GO BACK</button>
+    <script>
+        document.getElementById("redirectButton").onclick = function() {
+            // Replace 'my_url_name' with the name of your Django URL
+            var djangoUrl = "{% url 'homepage' %}";
+            // Redirect to the Django URL
+            window.location.href = djangoUrl;
+        };
+        </script>
+</div>
+</body>
+</html>

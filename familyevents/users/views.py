@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+def alert(request,data):
+    return render(request,'alert.html',{"data":data})
+
 def index_page(request):
     user=request.user
     is_authenticated = request.user.is_authenticated
@@ -48,7 +51,7 @@ def login_page(request):
             # Optionally, you can redirect the user to a different page after successful login
         else:
             # Authentication failed
-            print('Invalid credentials')
+            return redirect('alert',data="Invalid Credentials")
 
     return render(request, 'auth/login.html')
 
@@ -60,4 +63,3 @@ def view_profile(request):
 def logout_view(request):
     logout(request)
     return redirect(index_page)
-
