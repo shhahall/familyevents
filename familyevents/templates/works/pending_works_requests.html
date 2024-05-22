@@ -43,18 +43,17 @@
        
     </section>
     <section class="services-body">
-        {% for x in service %}
+        {% for x in works %}
         <div class="services-box">
-            <img src="{{ x.image.url }}" alt="" srcset="">
-            <h4>{{ x.name }}</h4>
-            <span>{{ x.description }}</span>
-            <a href="">Book Now</a>
+            <h4>Applicant Name : {{ x.user.username }}</h4>
+            <span>{{ x.work.name }}</span>
+            <a href="{% url 'bookwork' x.id %}">Book Now</a>
             <div class="admin-buttons">
-                <a href="{% url 'editservice' x.id %}">edit</a>
-                <a href="{% url 'deleteservice' x.id %}">delete</a>
+                <a href="{% url 'acceptbooking' x.id %}">accept</a>
+                <a href="{% url 'rejectbooking' x.id %}">reject</a>
             </div>
             </div>
-            {% endfor %}
+        {% endfor %}
 </section>
 </body>
 </html>

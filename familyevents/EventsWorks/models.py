@@ -15,3 +15,5 @@ class Works(models.Model):
 class BookedWorks(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL,related_name='booked_workers',null=True)
     work=models.ForeignKey(Works,on_delete=models.SET_NULL,related_name='booked_works',null=True)
+    status = models.IntegerField(default=0)
+

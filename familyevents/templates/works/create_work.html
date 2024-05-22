@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
+    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        body{
+            background-image: url('../static/images/topImage.jpg');
+        }
+    </style>
+</head>
+<body>
+    <section class="nav-bar">
+        <div class="logo">
+            <h5>FAMILY EVENTS</h5>
+        </div>
+        <div class="hm-menu">
+            <input type="checkbox" name="" id="hm-menu">
+            <label for="hm-menu" class="menu-icon" id="menu-icon">
+                <div class="line"></div>
+                <div class="line middle-line"></div>
+                <div class="line"></div>
+            </label>
+        </div>
+    
+        </section>
+        <section class="nav-bar-small" id="nav-bar-small">
+           <div class="navs">
+           <a href="{% url 'homepage' %}">Home</a>
+           <a href="">Services</a>
+           <span class="credits">copyright family events</span>
+    
+           </div>
+           
+        </section>
+        <div class="outer-box">
+            <form action="" method="post" class="login" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Name">
+                Type : <select name="type" id="">
+                    {% for x in types %}
+                    <option value="{{x.id}}">{{x.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="date" placeholder="Date" name="date">
+                <input type="text" placeholder="Place" name="place">
+                <input type="text" placeholder="Description" name="description">
+                <input type="time" placeholder="From Time" name="from_time">
+                <input type="time" placeholder="To Time" name="to_time">
+                <button type="submit">Create</button>
+                
+            </form>
+            
+        </div>
+</body>

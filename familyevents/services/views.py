@@ -9,14 +9,15 @@ def create_service(request):
         form=Service_Create_Form(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('homepage')
+            return redirect('services')
     else:
         form=Service_Create_Form()
     return render(request,'services/createservice.html',{'form':form})
 
 def list_services(request):
     service=Services.objects.all()
-    return render(request,'services/services.html',{'service':service})
+    is_authenticated = request.user.is_authenticated
+    return render(request,'services/services.html',{'service':service,"is_authenticated":is_authenticated})
 
 def edit_services(request,pk):
     service=Services.objects.get(pk=pk)

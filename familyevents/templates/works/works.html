@@ -43,16 +43,22 @@
        
     </section>
     <section class="services-body">
-        {% for x in service %}
+        {% for x in works %}
         <div class="services-box">
-            <img src="{{ x.image.url }}" alt="" srcset="">
             <h4>{{ x.name }}</h4>
-            <span>{{ x.description }}</span>
-            <a href="">Book Now</a>
+            <span>Date : {{ x.date }}</span>
+            <span>Location : {{ x.place }}</span>
+            <span>Description : {{ x.description }}</span>
+            <span>From {{ x.from_time }}</span>
+            <span>To {{ x.to_time }}</span>
+            <a href="{% url 'bookwork' x.id %}">Book Now</a>
+            {% if user.user_profile.role >= 3 %}
             <div class="admin-buttons">
-                <a href="{% url 'editservice' x.id %}">edit</a>
-                <a href="{% url 'deleteservice' x.id %}">delete</a>
+                <a href="{% url 'editwork' x.id %}">edit</a>
+                <a href="{% url 'deletework' x.id %}">delete</a>
+                <a href="{% url 'approvedemployees' x.id %}">approvedemployees</a>
             </div>
+            {% endif %}
             </div>
             {% endfor %}
 </section>

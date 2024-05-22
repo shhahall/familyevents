@@ -33,7 +33,10 @@
        {% else %}
        <a href="{% url 'loginpage' %}">Login/Register</a>
        {% endif %}
-       <a href="services.html">Services</a>
+       <a href="{% url 'services' %}">Services</a>
+       {% if user.user_profile.role >= 1 %}
+       <a href="{% url 'works' %}">Works</a>
+       {% endif %}
        <span class="credits">copyright family events</span>
 
        </div>
