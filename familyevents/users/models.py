@@ -7,3 +7,4 @@ class UserProfile(models.Model):
     whatsapp_number=models.CharField(max_length=10)
     dp_image=models.ImageField(upload_to='media/dp/',null=True)
     role=models.IntegerField(default=0)
+    work_points=models.IntegerField(default=0)

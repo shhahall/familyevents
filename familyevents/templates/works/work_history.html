@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
     <title>Index</title>
     <style>
        
@@ -29,9 +30,16 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Services</li>
-                    <li>Login/Register</li>                   <!--NAVIGATION-->
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    <a href="{% url 'worksmenu' %}"><li>works</li></a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}  
+                    {% if user.user_profile.role >= 3 %}
+                    <a href="{% url 'creatework' %}"><li>create work</li></a>
+                    {% endif %}
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -40,16 +48,17 @@
 <!-- content -->
 
 <div class="service-content-box">
-    
+    {% for x in works %}
     <form class="create-service works-bar works history">
-       <h3>WEDDING EVENTS</h3>
+       <h3>{{x.service.name}}</h3>
        <div class="content-inside">
-       <span>PLACE : TIRUR</span>
-       <span>TYPE : WEDDING EVENTS</span>
-       <span>FROM : 9AM</span>
-       <span>TO : 4PM</span>
+       <span>PLACE : {{x.place}}</span>
+       <span>TYPE : {{x.type}}</span>
+       <span>FROM : {{x.from_time}}</span>
+       <span>TO : {{x.to_time}}</span>
     </div>
     </form>
+    {% endfor %}
     
 
 

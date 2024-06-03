@@ -544,7 +544,7 @@ width: 60%;
 }
 /* ------------------------------------------------------------------------------------------------------- */
 /* create work */
-.create-work input{
+.create-work input,select{
  height: 2vh; 
  padding: 1%;
 }

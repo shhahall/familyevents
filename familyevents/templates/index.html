@@ -26,13 +26,16 @@
             </div>
             <div class="glass-bar">
                 <ul>
+                    <a href="{% url 'viewprofile' %}"><li>My profile</li></a>
                     <a href="{% url 'services' %}"><li>Services</li></a>
                     {% if is_authenticated %}
                     <a href="{% url 'logout' %}"><li>Logout</li></a>
                     {% else %}
                     <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
                     {% endif %}
-                    <a href="{% url 'workmenu' %}"><li>Works</li></a>
+                    {% if user.user_profile.role >= 1 %}
+                    <a href="{% url 'worksmenu' %}"><li>Works</li></a>
+                    {% endif %}
                     
                     <li class="credits">©familyevents</li>
                 </ul>

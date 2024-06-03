@@ -26,9 +26,8 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Services</li>
-                    <li>Login/Register</li>
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    <a href="{% url 'registerpage' %}"><li>Register</li></a>
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -41,7 +40,7 @@
     <div class="one">
 <h1>FAMILY</h1>
 <h1>EVENTS</h1>
-<span class="login-alert">DONT HAVE AN ACCOUNT?REGISTER</span>
+<span class="login-alert">DONT HAVE AN ACCOUNT?<a href="{% url 'registerpage' %}">REGISTER</a></span>
     </div>
     <form method="post" class="two">
         {% csrf_token %}

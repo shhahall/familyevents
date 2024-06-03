@@ -12,20 +12,25 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def create_service(request):
+    user=request.user
     if request.method == 'POST':
         name=request.POST.get('name')
         description = request.POST.get('description')
         image = request.FILES.get('dp')
+        if not image:
+            image='media/service_default.jpg'
         service=Services.objects.create(name=name,description=description,image=image)
         return redirect('services')
-    return render(request,'services/create_service.html')
+    return render(request,'services/create_service.html',{'user':user})
 
 def list_services(request):
     service=Services.objects.all()
+    user=request.user
     is_authenticated = request.user.is_authenticated
-    return render(request,'services/services.html',{'service':service,"is_authenticated":is_authenticated})
+    return render(request,'services/services.html',{'service':service,"is_authenticated":is_authenticated,'user':user})
 
 def edit_services(request,pk):
+    user=request.user
     service=Services.objects.get(pk=pk)
     if request.method == 'POST':
         service.name=request.POST.get('name')
@@ -35,7 +40,7 @@ def edit_services(request,pk):
             service.image = image
         service.save()
         return redirect('services')
-    return render(request,'services/edit_service.html',{'service':service})
+    return render(request,'services/edit_service.html',{'service':service,'user':user})
         
 def delete_services(request,pk):
     service=Services.objects.get(pk=pk)
@@ -46,18 +51,20 @@ def delete_services(request,pk):
     return redirect('services')
 @login_required
 def view_service(request,pk):
+    user=request.user
     service=Services.objects.get(pk=pk)
     if request.method == 'POST':
         date=request.POST.get('date')
         return redirect('createbooking',service_id=service.pk,date=date)
-    return render(request,"services/services_view.html",{'service':service})
+    return render(request,"services/services_view.html",{'service':service,'user':user})
 
 def view_service_2(request,pk):
+    user=request.user
     service=Services.objects.get(pk=pk)
     if request.method == 'POST':
         date=request.POST.get('date')
         return redirect('createbooking',service_id=service.pk,date=date)
-    return render(request,"services/services_view_2.html",{'service':service})
+    return render(request,"services/services_view_2.html",{'service':service,'user':user})
 
 def create_booking(request, service_id, date):
     user = request.user

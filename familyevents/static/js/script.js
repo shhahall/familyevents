@@ -28,6 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 function newworks(){
-    var link="{% url 'services' %}";
+    var link="{% url 'works' %}";
     window.location.href=link
 }

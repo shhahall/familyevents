@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
     <title>Index</title>
 </head>
 <body>
@@ -25,9 +26,14 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Services</li>
-                    <li>Login/Register</li>
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    <a href="{% url 'worksmenu' %}"><li>works</li></a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}  
+                   
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -39,21 +45,22 @@
    <div class="brown-box-one profile profile-edit">
     <div class="one">
         <div class="dp-and-icon">
-            <img class="mobile-image" src="images/dp-image.jpg" alt="" srcset="">
-            <img class="dp-edit-icon" src="images/icons/edit-icon.png" alt="" srcset="">
+            <img class="mobile-image" src="{{user.user_profile.dp_image.url}}" alt="" srcset="">
+           <a href="{% url 'editprofileimage' %}"><img class="dp-edit-icon" src="{% static 'images/icons/edit-icon.png' %}" alt="" srcset=""></a> 
         </div>
     </div>
-    <form class="two">
-
+    <form method="post" class="two">
+{% csrf_token %}
 <h3>My Profile</h3>
 <div class="dp-and-icon">
-<img class="mobile-image" src="images/dp-image.jpg" alt="" srcset="">
-<img class="dp-edit-icon" src="images/icons/edit-icon.png" alt="" srcset="">
+<img class="mobile-image" src="{{user.user_profile.dp_image.url}}" alt="" srcset="">
+<img class="dp-edit-icon" src="{% static 'images/icons/edit-icon.png' %}" alt="" srcset="">
 </div>
-<input placeholder="Username" id="username" value="SHHAHALL" type="text">
-<input placeholder="Name" id="name" value="MOHAMED SHAHAL" type="text">
-<input placeholder="Email" id="email" value="shahal3153@gmail.com" type="email">
-<input placeholder="Phone" id="phone" value="9895996418" type="number">
+<input name="username" placeholder="Username" id="username" value="{{user_profile.user.username}}" type="text">
+<input name="first_name" placeholder="Name" id="name" value="{{user_profile.user.first_name}}" type="text">
+<input name="last_name" placeholder="Name" id="name" value="{{user_profile.user.last_name}}" type="text">
+<input name="email" placeholder="Email" id="email" value="{{user_profile.user.email}}" type="email">
+<input name="whatsapp_number" placeholder="Phone" id="phone" value="{{user_profile.whatsapp_number}}" type="number">
 <button>SAVE</button>
 </form>
    </div>

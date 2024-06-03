@@ -10,7 +10,8 @@ class Works(models.Model):
     place=models.CharField(max_length=500)
     from_time=models.TimeField()
     to_time=models.TimeField()
-    slots=models.IntegerField()
+    slots=models.IntegerField(default=20)
+    booked_slots=models.IntegerField(default=0)
 
 class BookedWorks(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL,related_name='booked_workers',null=True)

@@ -30,9 +30,18 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Create Work</li>
-                    <li>Login/Register</li>                   <!--NAVIGATION-->
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    {% if user.user_profile.role >= 2 %}
+                    <a href="{% url 'createservice' %}"><li>Create Service</li></a>
+                    {% endif %}
+                    {% if is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}
+                    {% if user_profile.role >= 1 %}
+                    <a href="{% url 'workmenu' %}"><li>Works</li></a>
+                    {% endif %}
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>

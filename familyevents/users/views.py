@@ -13,6 +13,7 @@ def alert(request,data):
 def index_page(request):
     user=request.user
     is_authenticated = request.user.is_authenticated
+    
     return render(request,'index.html', {'user': user, 'is_authenticated': is_authenticated})
 
 def register_page(request):
@@ -25,6 +26,8 @@ def register_page(request):
         dob = request.POST.get('dob')
         whatsapp_number = request.POST.get('whatsapp_number')
         dp = request.FILES.get('dp')
+        if not dp:
+            dp = 'media/dp/default.png'
         if username and email and password:
             try:
                 user = User.objects.create_user(username=username, email=email, password=password, first_name=firstName, last_name=lastName)
@@ -59,6 +62,29 @@ def login_page(request):
 def view_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     return render(request, 'profile.html',{'user_profile':user_profile})
+
+def edit_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if request.method=='POST':
+        user_profile.user.username=request.POST.get('username')
+        user_profile.user.first_name=request.POST.get('first_name')
+        user_profile.user.last_name=request.POST.get('last_name')
+        user_profile.user.email=request.POST.get('email')
+        user_profile.whatsapp_number=request.POST.get('whatsapp_number')
+        user_profile.save()
+        user_profile.user.save()
+        return redirect('viewprofile')
+    return render(request, 'profile_edit.html',{'user_profile':user_profile})
+
+def edit_profile_image(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if request.method=='POST':
+        image=request.FILES.get('dp')
+        if image:
+            user_profile.dp_image=image
+            user_profile.save()
+            return redirect('editprofile')
+    return render(request,'profile_edit_image.html',{'user_profile':user_profile})
 
 def logout_view(request):
     logout(request)

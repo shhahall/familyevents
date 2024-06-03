@@ -31,13 +31,13 @@
             <div class="glass-bar">
                 <ul>
                     <a href="{% url 'homepage' %}"><li>Home</li></a>
-                    <a href="{% url 'services' %}"><li>Services</li></a>
+                    <a href="{% url 'worksmenu' %}"><li>works</li></a>
                     {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}"><li>Logout</li></a>
                     {% else %}
                     <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
                     {% endif %}  
-                    <a href="{% url 'createservice' %}"><li>create service</li></a>
+                   
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -49,20 +49,19 @@
     
     <form method="post" class="create-service" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2>EDIT SERVICE</h2>
-        <input type="text" name="name" value="{{ service.name }}" placeholder="Name" id="name">
-        <input type="text" name="description" value="{{ service.description }}" placeholder="Description" id="description">
-    
-        {% if service.image %}
+        <h2>EDIT PROFILE IMAGE</h2>
+        {% if user_profile.dp_image %}
             <div>
-                <img src="{{ service.image.url }}" alt="Current Image" style="max-width: 5vh;">
+                <img src="{{ user_profile.dp_image.url }}" alt="Current Image" style="max-width: 5vh;">
             </div>
         {% endif %}
-    
+
         <label class="dp-upload" for="dp">Choose a file</label>
-        <input type="file" value="{{ service.image.url }}" name="dp" style="display: none;" id="dp">
+        <input type="file" name="dp" style="display: none;" id="dp">
+
+        <button>ok</button>
     
-        <button type="submit">Update</button>
+        
     </form>
     
     

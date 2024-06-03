@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
     <title>Index</title>
     <style>
        
@@ -30,9 +30,16 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Services</li>
-                    <li>Login/Register</li>                   <!--NAVIGATION-->
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    <a href="{% url 'worksmenu' %}"><li>works</li></a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}  
+                    {% if user.user_profile.role >= 3 %}
+                    <a href="{% url 'creatework' %}"><li>create work</li></a>
+                    {% endif %}
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -41,17 +48,18 @@
 <!-- content -->
 
 <div class="service-content-box">
-    
+    {% for x in employees%}
     <form class="create-service works-bar works requests">
-      <img src="images/dp-image.jpg" alt="">
-      <span>MOHAMED SHAHAL</span>
-      <span>shhahall</span>
-      <span>AGE : 18</span>
-      <span >Number : 9895996418</span>
-      <span>Email : shahal3153@gmail.com</span>
-      <span>Work Points : 200</span>
-      <button class="work-admin-button">REMOVE USER</button>
+      <img src="{{ x.user.user_profile.dp_image.url }}" alt="">
+      <span>{{x.user.first_name}} {{x.user.last_name}}</span>
+      <span>{{x.user.username}}</span>
+      <span>AGE : {{x.user.user_profile.dob}}</span>
+      <span >Number : {{x.user.user_profile.whatsapp_number}}</span>
+      <span>Email : {{x.user.email}}</span>
+      <span>Work Points : {{x.user.user_profile.work_points}}</span>
+      <a style="padding: 1%; border-radius: 3vh; text-decoration: none;" href="{% url 'rejectbooking' x.id %}" class="work-admin-button">REMOVE USER</a>
     </form>
+    {% endfor %}
     
 
 

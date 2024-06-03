@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
     <title>Index</title>
     <style>
        
@@ -29,9 +30,13 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Services</li>
-                    <li>Login/Register</li>                   <!--NAVIGATION-->
-                    <li>Works</li>
+                    <a href="{% url 'homepage' %}"><li>Home</li></a>
+                    <a href="{% url 'worksmenu' %}"><li>works</li></a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}  
                     <li class="credits">©familyevents</li>
                 </ul>
             </div>
@@ -41,15 +46,20 @@
 
 <div class="service-content-box">
     
-    <form class="create-service works-bar works create-work">
+    <form  method="post" class="create-service works-bar works create-work">
+        {% csrf_token %}
        <h3>CREATE WORK</h3>
-       <input id="name" placeholder="name" type="text">
-       <input id="type" placeholder="type" type="text">
-       <input id="place" placeholder="place" type="text">
-       <input id="slots" placeholder="slots" type="text">
-       <input id="date" placeholder="date" type="text">
-       <input id="from" placeholder="from" type="text">
-       <input id="to" placeholder="to" type="text">
+       <input name="name" id="name" placeholder="name" type="text" required>
+       <select aria-placeholder="select" name="type" required>
+        {% for x in types %}
+        <option value="{{x.id}}">{{x.name}}</option>
+        {% endfor %}
+       </select>
+       <input name="place" id="place" placeholder="place" type="text" required>
+       <input name="slots" id="slots" placeholder="slots" type="text" required>
+       <input name="date" id="date" placeholder="date" type="date" required>
+       <input name="from_time" id="from" placeholder="from" type="time" required>
+       <input name="to_time" id="to" placeholder="to" type="time" required>
        <button>CREATE</button>
     </form>
     
