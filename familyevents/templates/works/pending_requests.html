@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script defer src="{% static 'js/script.js' %}"></script>
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
     <title>Index</title>
     <style>
        
@@ -30,7 +30,7 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Create Work</li>
+                    <li>Services</li>
                     <li>Login/Register</li>                   <!--NAVIGATION-->
                     <li>Works</li>
                     <li class="credits">©familyevents</li>
@@ -41,22 +41,20 @@
 <!-- content -->
 
 <div class="service-content-box">
-    {% for x in service %}
-    <div class="service-card">
-        <div class="service-image" style="background-image: url('{{x.image.url}}'); background-size: cover;"></div>
-        <div class="black-card">
-            <h2>{{x.name}}</h2>
-            <img src="{{x.image.url}}" class="service-image-tag" alt="" srcset=""><!--image here-->
-         <!--para here-->   <p>{{x.description}}</p>
-            <a href="{% url 'viewservice' x.id %}">Book Now</a><!--link here-->
-            <div class="admins-buttons">
-                <a href="{% url 'editservice' x.id %}">Edit</a><!--link here-->
-                <a href="{% url 'deleteservice' x.id %}">Delete</a><!--link here--> 
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-
+    
+    <form class="create-service works-bar requests">
+      <img src="images/dp-image.jpg" alt="">
+      <span>MOHAMED SHAHAL</span>
+      <span>shhahall</span>
+      <span>AGE : 18</span>
+      <span class="phone-number">Number : 9895996418</span>
+      <span>Email : shahal3153@gmail.com</span>
+      <span>Work Points : 200</span>
+      <div class="buttons">
+        <img src="images/icons/tick.png" alt="">
+        <img src="images/icons/cross.png" alt="">
+      </div>
+    </form>
     
 
 
@@ -70,7 +68,7 @@ if(window.innerWidth <= 425){
     b[0].style.marginTop='15vh';
     b[c-1].style.marginBottom='25vh';
 } else {
-    b[0].style.marginTop='35vh';
+    b[0].style.marginTop='33vh';
     b[c-1].style.marginBottom='35vh';
 }
 </script>

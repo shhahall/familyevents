@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script defer src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
     <title>Index</title>
     <style>
        
@@ -30,7 +29,7 @@
             </div>
             <div class="glass-bar">
                 <ul>
-                    <li>Create Work</li>
+                    <li>Services</li>
                     <li>Login/Register</li>                   <!--NAVIGATION-->
                     <li>Works</li>
                     <li class="credits">©familyevents</li>
@@ -41,22 +40,16 @@
 <!-- content -->
 
 <div class="service-content-box">
-    {% for x in service %}
-    <div class="service-card">
-        <div class="service-image" style="background-image: url('{{x.image.url}}'); background-size: cover;"></div>
-        <div class="black-card">
-            <h2>{{x.name}}</h2>
-            <img src="{{x.image.url}}" class="service-image-tag" alt="" srcset=""><!--image here-->
-         <!--para here-->   <p>{{x.description}}</p>
-            <a href="{% url 'viewservice' x.id %}">Book Now</a><!--link here-->
-            <div class="admins-buttons">
-                <a href="{% url 'editservice' x.id %}">Edit</a><!--link here-->
-                <a href="{% url 'deleteservice' x.id %}">Delete</a><!--link here--> 
-            </div>
-        </div>
+    
+    <form class="create-service works-bar works history">
+       <h3>WEDDING EVENTS</h3>
+       <div class="content-inside">
+       <span>PLACE : TIRUR</span>
+       <span>TYPE : WEDDING EVENTS</span>
+       <span>FROM : 9AM</span>
+       <span>TO : 4PM</span>
     </div>
-    {% endfor %}
-
+    </form>
     
 
 
@@ -70,7 +63,7 @@ if(window.innerWidth <= 425){
     b[0].style.marginTop='15vh';
     b[c-1].style.marginBottom='25vh';
 } else {
-    b[0].style.marginTop='35vh';
+    b[0].style.marginTop='33vh';
     b[c-1].style.marginBottom='35vh';
 }
 </script>

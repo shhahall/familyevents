@@ -3,115 +3,124 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
-    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+    <title>Index</title>
 </head>
 <body>
-    <section class="nav-bar">
-    <div class="logo">
-        <h5>FAMILY EVENTS</h5>
-    </div>
-    <div class="hm-menu">
-        <input type="checkbox" name="" id="hm-menu">
-        <label for="hm-menu" class="menu-icon" id="menu-icon">
-            <div class="line"></div>
-            <div class="line middle-line"></div>
-            <div class="line"></div>
-        </label>
-    </div>
-
-    </section>
-    <section class="nav-bar-small" id="nav-bar-small">
-       <div class="navs">
-       <a href="">About Us</a>
-       {% if is_authenticated %}
-       <a href="{% url 'viewprofile' %}">Profile</a>
-       {% endif %}
-       {% if is_authenticated %}
-       <a href="{% url 'logout' %}">Logout</a>
-       {% else %}
-       <a href="{% url 'loginpage' %}">Login/Register</a>
-       {% endif %}
-       <a href="{% url 'services' %}">Services</a>
-       {% if user.user_profile.role >= 1 %}
-       <a href="{% url 'works' %}">Works</a>
-       {% endif %}
-       <span class="credits">copyright family events</span>
-
-       </div>
-       
-    </section>
-    <section class="top-images">
-        <div id="slide-up" class="top-text">
-            <h1>Need Our Service?</h1>
-            <button>Get Now</button>
+    <div class="body">
+        <!-- navigation bar -->
+        <div class="nav-bar">
+            <div class="black-bar">
+                <span>FAMILY EVENTS</span>
+                <input type="checkbox" class="hm-check" id="hm-menu">
+                <label onclick="hmaction();" class="hm-label" for="hm-menu">
+                    <div class="menu-icon">
+                        <div class="line"></div>
+                        <div class="line middle-line"></div>
+                        <div class="line"></div>
+                    </div>
+                
+                </label>
+            </div>
+            <div class="glass-bar">
+                <ul>
+                    <a href="{% url 'services' %}"><li>Services</li></a>
+                    {% if is_authenticated %}
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    {% else %}
+                    <a href="{% url 'loginpage' %}"><li>Login/Register</li></a>
+                    {% endif %}
+                    <a href="{% url 'workmenu' %}"><li>Works</li></a>
+                    
+                    <li class="credits">©familyevents</li>
+                </ul>
+            </div>
         </div>
-        <img src="{% static 'images/topImage.jpg' %}" alt="">
-       
-    </section>
-    
-    <section class="content-1">
-        <img src="{% static 'images/topImage2.jpeg' %}" alt="">
-        <div class="cont-1">
-           <div class="para-1">
-            <h1>FAMILY EVENTS</h1>
-            <p>Family Events is a Event Management Company based on Kerala,India.we Provide Good Quality Services.Thank You</p>
-           </div>
-        </div>
+<!-- navigation bar -->
+<!-- content -->
 
-    </section>
-    <section class="content-1">
-        <img src="{% static 'images/topImage.jpg' %}" alt="">
-        <div class="cont-1">
-            <div class="counters">
-           <div class="counter">
-            <span>100+</span>
-            <span>Happy Clients</span>
-           </div>
-           <div class="counter">
+<div class="content">
+    <div class="need-service">
+        <span>Need Our Service?</span>
+        <button>Learn More</button>
+    </div>
+</div>
+
+<!-- content -->
+    </div>
+    <div class="body-2">
+<!-- content -->
+<div class="content">
+    <div class="black-box-one">
+        <p>Welcome to Family Events, where we turn your special moments into unforgettable memories. Since our founding in 2023, we have been dedicated to providing exceptional event management services tailored to your unique needs. Our passionate team of professionals works diligently to ensure every detail is perfect, from intimate gatherings to grand celebrations. At Family Events, we believe in creating experiences that bring people together and leave lasting impressions. Thank you for choosing us to be part of your life's most cherished occasions.</p>
+    </div>
+</div>
+<!-- content -->
+    </div>
+    <div class="body three">
+<!-- content -->
+
+<div class="content-half three">
+    <div class="counters">
+        <div class="counter">
+            <img src="images/icons/clients-icon.PNG" alt="" srcset="">
             <span>100+</span>
             <span>Events Hosted</span>
-           </div>
-           <div class="counter">
-            <span>100+</span>
-            <span>Satisfied Employees</span>
-           </div>
-           </div>
         </div>
-    </section>
-    <section class="contact-us">
-<div class="connect-with-us">
-    <h2>Connect With Us</h2>
-    <div class="icons">
-    <img src="images/icon.png" class="icon" alt="" srcset="">
-    <img src="images/icon.png" class="icon" alt="" srcset="">
-    <img src="images/icon.png" class="icon" alt="" srcset="">
-    <img src="images/icon.png" class="icon" alt="" srcset="">
-</div>
-</div>
-<div class="addresses">
-<div class="address">
-    <h2>Address</h2>
-    <span>Family Events and Caters</span>
-    <span>Near Niramaruthur Grama Panchayath</span>
-    <span>Niramaruthur,676109</span>
-    <span>Tirur,Malappuram,Kerala</span>
-</div>
-<div class="map">
-<iframe 
-    width="600" 
-    height="450" 
-    frameborder="0" 
-    style="border:0" 
-    
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15468.975498043856!2d76.1213178!3d10.9032923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDAzJzU2LjYiTiA3NsKwMTYnMjIuNyJF!5e0!3m2!1sen!2sin!4v1644864142290!5m2!1sen!2sin&t=satellite&zoom=15" 
-    allowfullscreen>
-</iframe>
-</div>
-</div>
-    </section>
-   
 
+        <div class="counter">
+            <img src="images/icons/clients-icon.PNG" alt="" srcset="">
+            <span>100+</span>
+            <span>Satisfied Clients</span>
+        </div>
+
+        <div class="counter">
+            <img src="images/icons/clients-icon.PNG" alt="" srcset="">
+            <span>100+</span>
+            <span>Supporting Staffs</span>
+        </div>
+    </div>
+</div>
+
+<!-- content -->
+<div class="footer-black">
+    <div class="card">
+        <h1>FAMILY EVENTS</h1>
+        <span>
+FAMILY EVENTS<br>
+MUAR,8400<br>
+JOHOR<br>
+MALAYSIA<br>
+<br><br>
+FAMILY EVENTS<br>
+TIRUR,676109<br>
+MALAPPURAM<br>
+KERALA<br>
+INDIA<br>
+        </span>
+    </div>
+    <div class="card">
+        <h1>CONNECT US</h1>
+        <span>Phone : 0494-2426418<br>
+            Email:familyevents@gmail.com</span><br>
+        <h2>SOCIAL MEDIA</h2>
+        <div class="icons">
+            <img src="images/icons/insta-icon.png" alt="" srcset="">
+            <img src="images/icons/whatsapp-icon.png" alt="" srcset="">
+            <img class="yt-icon" src="images/icons/youtube-icon.png" alt="" srcset="">
+        </div>
+    </div>
+    <iframe 
+       class="card"
+        frameborder="0" 
+        style="border:0" 
+        
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15468.975498043856!2d76.1213178!3d10.9032923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDAzJzU2LjYiTiA3NsKwMTYnMjIuNyJF!5e0!3m2!1sen!2sin!4v1644864142290!5m2!1sen!2sin&t=satellite&zoom=15" 
+        allowfullscreen>
+    </iframe>
+</div>
+    </div>
 </body>
 </html>

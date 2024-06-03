@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from . models import Works,BookedWorks
 from services.models import Services
 # Create your views here.
+def work_menu(request):
+    return render(request,'works/works_menu.html')
 def create_work(request):
     types=Services.objects.all()
     if request.method=='POST':

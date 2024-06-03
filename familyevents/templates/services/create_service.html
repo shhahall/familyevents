@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script defer src="{% static 'js/script.js' %}"></script>
     <title>Index</title>
+    <style>
+       
+    </style>
+    
 </head>
 <body>
     <div class="body">
@@ -27,7 +31,7 @@
             <div class="glass-bar">
                 <ul>
                     <li>Services</li>
-                    <li>Login/Register</li>
+                    <li>Login/Register</li>                   <!--NAVIGATION-->
                     <li>Works</li>
                     <li class="credits">©familyevents</li>
                 </ul>
@@ -36,32 +40,32 @@
 <!-- navigation bar -->
 <!-- content -->
 
-<div class="content">
-   <div class="brown-box-one">
-    <div class="one">
-<h1>FAMILY</h1>
-<h1>EVENTS</h1>
-<span class="login-alert">HAVE AN ACCOUNT?LOGIN</span>
-    </div>
-    <form method="post" class="two" enctype="multipart/form-data">
+<div class="service-content-box">
+    
+    <form method="post" enctype="multipart/form-data" class="create-service">
         {% csrf_token %}
-<h1>REGISTER</h1>
-<input type="text" name="firstName" placeholder="First Name" required>
-<input type="text" name="lastName" placeholder="Last Name" required>
-<input type="text" name="username" placeholder="Username" required>
-<input type="date" name="dob" placeholder="Date of Birth" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="number" name="whatsapp_number" placeholder="Phone Number" required>
-<label class="profile-image-input" for="profile-image">Select File</label>
-<input id="profile-image" name="dp" style="display: none;"  type="file">
-<input type="password" name="password" placeholder="Password" required>
-<div class="buttons">
-    <button type="reset">CLEAR</button>
-    <button type="submit">REGISTER</button>
-</div>
-</form>
-   </div>
+        <h2>CREATE SERVICE</h2>
+        <input type="text" name="name" placeholder="Name" id="name">
+        <input type="text" name="description" placeholder="Description" id="description">
+        <label class="dp-upload" for="dp">choose a file</label>
+        <input type="file" name="dp" style="display: none;" id="dp">
+        <button>create</button>
+    </form>
+    
+
+
 </div>
 
 </body>
+<script>
+    var b = document.getElementsByClassName('service-card');
+var c = document.querySelectorAll('.service-card').length;
+if(window.innerWidth <= 425){
+    b[0].style.marginTop='15vh';
+    b[c-1].style.marginBottom='25vh';
+} else {
+    b[0].style.marginTop='33vh';
+    b[c-1].style.marginBottom='35vh';
+}
+</script>
 </html>

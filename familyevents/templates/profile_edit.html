@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script defer src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
     <title>Index</title>
 </head>
 <body>
@@ -37,28 +36,25 @@
 <!-- content -->
 
 <div class="content">
-   <div class="brown-box-one">
+   <div class="brown-box-one profile profile-edit">
     <div class="one">
-<h1>FAMILY</h1>
-<h1>EVENTS</h1>
-<span class="login-alert">HAVE AN ACCOUNT?LOGIN</span>
+        <div class="dp-and-icon">
+            <img class="mobile-image" src="images/dp-image.jpg" alt="" srcset="">
+            <img class="dp-edit-icon" src="images/icons/edit-icon.png" alt="" srcset="">
+        </div>
     </div>
-    <form method="post" class="two" enctype="multipart/form-data">
-        {% csrf_token %}
-<h1>REGISTER</h1>
-<input type="text" name="firstName" placeholder="First Name" required>
-<input type="text" name="lastName" placeholder="Last Name" required>
-<input type="text" name="username" placeholder="Username" required>
-<input type="date" name="dob" placeholder="Date of Birth" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="number" name="whatsapp_number" placeholder="Phone Number" required>
-<label class="profile-image-input" for="profile-image">Select File</label>
-<input id="profile-image" name="dp" style="display: none;"  type="file">
-<input type="password" name="password" placeholder="Password" required>
-<div class="buttons">
-    <button type="reset">CLEAR</button>
-    <button type="submit">REGISTER</button>
+    <form class="two">
+
+<h3>My Profile</h3>
+<div class="dp-and-icon">
+<img class="mobile-image" src="images/dp-image.jpg" alt="" srcset="">
+<img class="dp-edit-icon" src="images/icons/edit-icon.png" alt="" srcset="">
 </div>
+<input placeholder="Username" id="username" value="SHHAHALL" type="text">
+<input placeholder="Name" id="name" value="MOHAMED SHAHAL" type="text">
+<input placeholder="Email" id="email" value="shahal3153@gmail.com" type="email">
+<input placeholder="Phone" id="phone" value="9895996418" type="number">
+<button>SAVE</button>
 </form>
    </div>
 </div>

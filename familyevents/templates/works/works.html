@@ -3,66 +3,74 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
-    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+
+
+    <title>Index</title>
     <style>
-        body{
-            background-image: url('../static/images/topImage.jpg');
-        }
+       
     </style>
+    
 </head>
 <body>
-    <section class="nav-bar">
-    <div class="logo">
-        <h5>FAMILY EVENTS</h5>
-    </div>
-    <div class="hm-menu">
-        <input type="checkbox" name="" id="hm-menu">
-        <label for="hm-menu" class="menu-icon" id="menu-icon">
-            <div class="line"></div>
-            <div class="line middle-line"></div>
-            <div class="line"></div>
-        </label>
-    </div>
-
-    </section>
-    <section class="nav-bar-small" id="nav-bar-small">
-       <div class="navs">
-       <a href="{% url 'homepage' %}">Home</a>
-       {% if is_authenticated %}
-       <a href="{% url 'logout' %}">Logout</a>
-       {% else %}
-       <a href="{% url 'loginpage' %}">Login/Register</a>
-       {% endif %}
-       {% if user.user_profile.role >= 3 %}
-       <a href="{% url 'creatework' %}">Create Work</a>
-       <a href="{% url 'bookingrequests' %}">Work Requests</a>  
-       {% endif %}
-       <span class="credits">copyright family events</span>
-
-       </div>
-       
-    </section>
-    <section class="services-body">
-        {% for x in works %}
-        <div class="services-box">
-            <h4>{{ x.name }}</h4>
-            <span>Date : {{ x.date }}</span>
-            <span>Location : {{ x.place }}</span>
-            <span>Description : {{ x.description }}</span>
-            <span>From {{ x.from_time }}</span>
-            <span>To {{ x.to_time }}</span>
-            <a href="{% url 'bookwork' x.id %}">Book Now</a>
-            {% if user.user_profile.role >= 3 %}
-            <div class="admin-buttons">
-                <a href="{% url 'editwork' x.id %}">edit</a>
-                <a href="{% url 'deletework' x.id %}">delete</a>
-                <a href="{% url 'approvedemployees' x.id %}">approvedemployees</a>
+    <div class="body">
+        <!-- navigation bar -->
+        <div class="nav-bar">
+            <div class="black-bar">
+                <span>FAMILY EVENTS</span>
+                <input type="checkbox" class="hm-check" id="hm-menu">
+                <label onclick="hmaction();" class="hm-label" for="hm-menu">
+                    <div class="menu-icon">
+                        <div class="line"></div>
+                        <div class="line middle-line"></div>
+                        <div class="line"></div>
+                    </div>
+                
+                </label>
             </div>
-            {% endif %}
+            <div class="glass-bar">
+                <ul>
+                    <li>Services</li>
+                    <li>Login/Register</li>                   <!--NAVIGATION-->
+                    <li>Works</li>
+                    <li class="credits">©familyevents</li>
+                </ul>
             </div>
-            {% endfor %}
-</section>
+        </div>
+<!-- navigation bar -->
+<!-- content -->
+
+<div class="service-content-box">
+    {% for x in works %}
+    <form class="create-service works-bar works">
+       <h3>{{ x.name }}</h3>
+       <span>PLACE : {{type}}</span>
+       <span>TYPE : {{ date }}</span>
+       <span>AVAILABLE SLOTS : 50</span>
+       <span>DOB : 04/06/2005</span>
+       <span>FROM : 9AM</span>
+       <span>TO : 4PM</span>
+       <span class="work-alert">*NO SLOTS AVAILABLE</span>
+       <button>BOOK SLOT</button>
+       <button class="work-admin-button">WORK SETTINGS</button>
+    </form>
+    
+
+
+</div>
+
 </body>
+<script>
+    var b = document.getElementsByClassName('service-card');
+var c = document.querySelectorAll('.service-card').length;
+if(window.innerWidth <= 425){
+    b[0].style.marginTop='15vh';
+    b[c-1].style.marginBottom='25vh';
+} else {
+    b[0].style.marginTop='33vh';
+    b[c-1].style.marginBottom='35vh';
+}
+</script>
 </html>

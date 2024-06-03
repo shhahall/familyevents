@@ -6,5 +6,7 @@ urlpatterns=[
   path('editservice/<pk>',views.edit_services,name='editservice'),
   path('services/',views.list_services,name='services'),
   path('viewservice/<pk>',views.view_service,name='viewservice'),
-  path('create_booking/<int:service_id>/<str:date>/',views.create_booking,name='createbooking')
+  path('viewservices/<pk>',views.view_service_2,name='viewservice_2'),
+  path('create_booking/<int:service_id>/<str:date>/',views.create_booking,name='createbooking'),
+  
 ]

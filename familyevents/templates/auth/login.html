@@ -3,46 +3,60 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
-    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
-    <style>
-        body{
-            background-image: url('../static/images/topImage.jpg');
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+    <title>Index</title>
 </head>
 <body>
-    <section class="nav-bar">
-        <div class="logo">
-            <h5>FAMILY EVENTS</h5>
+    <div class="body">
+        <!-- navigation bar -->
+        <div class="nav-bar">
+            <div class="black-bar">
+                <span>FAMILY EVENTS</span>
+                <input type="checkbox" class="hm-check" id="hm-menu">
+                <label onclick="hmaction();" class="hm-label" for="hm-menu">
+                    <div class="menu-icon">
+                        <div class="line"></div>
+                        <div class="line middle-line"></div>
+                        <div class="line"></div>
+                    </div>
+                
+                </label>
+            </div>
+            <div class="glass-bar">
+                <ul>
+                    <li>Services</li>
+                    <li>Login/Register</li>
+                    <li>Works</li>
+                    <li class="credits">©familyevents</li>
+                </ul>
+            </div>
         </div>
-        <div class="hm-menu">
-            <input type="checkbox" name="" id="hm-menu">
-            <label for="hm-menu" class="menu-icon" id="menu-icon">
-                <div class="line"></div>
-                <div class="line middle-line"></div>
-                <div class="line"></div>
-            </label>
-        </div>
-    
-        </section>
-        <section class="nav-bar-small" id="nav-bar-small">
-           <div class="navs">
-           <a href="{% url 'homepage' %}">Home</a>
-           <a href="">Services</a>
-           <span class="credits">copyright family events</span>
-    
-           </div>
-           
-        </section>
-        <div class="outer-box">
-            <form action="" method="post" class="login">
-                {% csrf_token %}
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button>Login</button>
-                <span>Don't have an account?<a href="{% url 'registerpage' %}" class="highlight">Register Now</span>
-            </form>
-        </div>
+<!-- navigation bar -->
+<!-- content -->
+
+<div class="content">
+   <div class="brown-box-one">
+    <div class="one">
+<h1>FAMILY</h1>
+<h1>EVENTS</h1>
+<span class="login-alert">DONT HAVE AN ACCOUNT?REGISTER</span>
+    </div>
+    <form method="post" class="two">
+        {% csrf_token %}
+<h1>LOGIN</h1>
+
+<input type="text" name="username" placeholder="Username" required>
+
+<input type="password" name="password" placeholder="Password" required>
+<div class="buttons">
+    <button type="reset">CLEAR</button>
+    <button type="submit">LOGIN</button>
+</div>
+</form>
+   </div>
+</div>
+
 </body>
+</html>

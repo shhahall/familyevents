@@ -5,6 +5,7 @@ urlpatterns=[
     path('editwork/<pk>',views.edit_work,name='editwork'),
     path('deletework/<pk>',views.delete_work,name='deletework'),
     path('bookwork/<pk>',views.book_work,name='bookwork'),
+    path('worksmenu/',views.work_menu,name='workmenu'),
     path('works/',views.list_works,name='works'),
     path('bookingrequests/',views.list_bookings,name='bookingrequests'),
     path('editbooking/<pk>',views.accept_booking,name='acceptbooking'),

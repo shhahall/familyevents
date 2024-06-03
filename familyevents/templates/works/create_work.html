@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
-    <title>Home</title><link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Index</title>
     <style>
-        body{
-            background-image: url('../static/images/topImage.jpg');
-        }
+       
     </style>
+    
 </head>
 <body>
-    <section class="nav-bar">
-        <div class="logo">
-            <h5>FAMILY EVENTS</h5>
-        </div>
-        <div class="hm-menu">
-            <input type="checkbox" name="" id="hm-menu">
-            <label for="hm-menu" class="menu-icon" id="menu-icon">
-                <div class="line"></div>
-                <div class="line middle-line"></div>
-                <div class="line"></div>
-            </label>
-        </div>
-    
-        </section>
-        <section class="nav-bar-small" id="nav-bar-small">
-           <div class="navs">
-           <a href="{% url 'homepage' %}">Home</a>
-           <a href="">Services</a>
-           <span class="credits">copyright family events</span>
-    
-           </div>
-           
-        </section>
-        <div class="outer-box">
-            <form action="" method="post" class="login" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="text" name="name" placeholder="Name">
-                Type : <select name="type" id="">
-                    {% for x in types %}
-                    <option value="{{x.id}}">{{x.name}}</option>
-                    {% endfor %}
-                </select>
-                <input type="date" placeholder="Date" name="date">
-                <input type="text" placeholder="Place" name="place">
-                <input type="text" placeholder="Description" name="description">
-                <input type="time" placeholder="From Time" name="from_time">
-                <input type="time" placeholder="To Time" name="to_time">
-                <button type="submit">Create</button>
+    <div class="body">
+        <!-- navigation bar -->
+        <div class="nav-bar">
+            <div class="black-bar">
+                <span>FAMILY EVENTS</span>
+                <input type="checkbox" class="hm-check" id="hm-menu">
+                <label onclick="hmaction();" class="hm-label" for="hm-menu">
+                    <div class="menu-icon">
+                        <div class="line"></div>
+                        <div class="line middle-line"></div>
+                        <div class="line"></div>
+                    </div>
                 
-            </form>
-            
+                </label>
+            </div>
+            <div class="glass-bar">
+                <ul>
+                    <li>Services</li>
+                    <li>Login/Register</li>                   <!--NAVIGATION-->
+                    <li>Works</li>
+                    <li class="credits">©familyevents</li>
+                </ul>
+            </div>
         </div>
+<!-- navigation bar -->
+<!-- content -->
+
+<div class="service-content-box">
+    
+    <form class="create-service works-bar works create-work">
+       <h3>CREATE WORK</h3>
+       <input id="name" placeholder="name" type="text">
+       <input id="type" placeholder="type" type="text">
+       <input id="place" placeholder="place" type="text">
+       <input id="slots" placeholder="slots" type="text">
+       <input id="date" placeholder="date" type="text">
+       <input id="from" placeholder="from" type="text">
+       <input id="to" placeholder="to" type="text">
+       <button>CREATE</button>
+    </form>
+    
+
+
+</div>
+
 </body>
+<script>
+    var b = document.getElementsByClassName('service-card');
+var c = document.querySelectorAll('.service-card').length;
+if(window.innerWidth <= 425){
+    b[0].style.marginTop='15vh';
+    b[c-1].style.marginBottom='25vh';
+} else {
+    b[0].style.marginTop='33vh';
+    b[c-1].style.marginBottom='35vh';
+}
+</script>
+</html>
