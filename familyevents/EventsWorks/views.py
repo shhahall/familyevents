@@ -89,12 +89,14 @@ def end_work(request,work_id):
     employees = BookedWorks.objects.filter(work=work,status=1)
     for x in employees:
         x.user.user_profile.work_points += 20
+        x.status = 2
+        x.save()
         x.user.user_profile.save()
-    work.delete()
+    
     return redirect('works')
 def work_history(request):
     user=request.user
-    works=BookedWorks.objects.filter(user=user)
+    works=BookedWorks.objects.filter(user=user,status=2)
     return render(request,'works/work_history.html',{'user':user,'works':works})
 def registered_employees(request,pk):
     user=request.user

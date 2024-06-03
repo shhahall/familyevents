@@ -50,12 +50,12 @@
 <div class="service-content-box">
     {% for x in works %}
     <form class="create-service works-bar works history">
-       <h3>{{x.service.name}}</h3>
+       <h3>{{x.work.name}}</h3>
        <div class="content-inside">
-       <span>PLACE : {{x.place}}</span>
-       <span>TYPE : {{x.type}}</span>
-       <span>FROM : {{x.from_time}}</span>
-       <span>TO : {{x.to_time}}</span>
+       <span>PLACE : {{x.work.place}}</span>
+       <span>TYPE : {{x.work.type}}</span>
+       <span>FROM : {{x.workfrom_time}}</span>
+       <span>TO : {{x.work.to_time}}</span>
     </div>
     </form>
     {% endfor %}
