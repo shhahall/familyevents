@@ -49,7 +49,7 @@ def list_works(request):
     user=request.user
     if user.user_profile.role <= 1:
         return redirect('homepage')
-    works=Works.objects.all()
+    works=Works.objects.filter(status=0)
     is_authenticated = request.user.is_authenticated
     return render(request,'works/works.html',{'works':works,"is_authenticated":is_authenticated,'user':user})
 
@@ -89,9 +89,9 @@ def end_work(request,work_id):
     employees = BookedWorks.objects.filter(work=work,status=1)
     for x in employees:
         x.user.user_profile.work_points += 20
-        x.status = 2
-        x.save()
         x.user.user_profile.save()
+    work.status = 1
+    work.save()
     
     return redirect('works')
 def work_history(request):

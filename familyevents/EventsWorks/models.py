@@ -12,6 +12,7 @@ class Works(models.Model):
     to_time=models.TimeField()
     slots=models.IntegerField(default=20)
     booked_slots=models.IntegerField(default=0)
+    status=models.IntegerField(default=0)
 
 class BookedWorks(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL,related_name='booked_workers',null=True)
